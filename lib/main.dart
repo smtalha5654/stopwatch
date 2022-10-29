@@ -4,8 +4,44 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: StopWatchScreen(),
+    debugShowCheckedModeBanner: false,
+    home: splashScreen(),
   ));
+}
+
+class splashScreen extends StatefulWidget {
+  const splashScreen({Key? key}) : super(key: key);
+
+  @override
+  State<splashScreen> createState() => _splashScreenState();
+}
+
+class _splashScreenState extends State<splashScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Timer(
+        Duration(seconds: 4),
+        () => Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (BuildContext context) => StopWatchScreen())));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color.fromARGB(255, 248, 248, 248),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            'assets/Stopwatch.gif',
+            fit: BoxFit.fill,
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class StopWatchScreen extends StatefulWidget {
